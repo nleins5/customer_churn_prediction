@@ -1,4 +1,2 @@
 venv
-data/sample_submission.csv
-data/test.csv
-data/train.csv
+data/
