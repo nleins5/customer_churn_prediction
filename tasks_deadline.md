@@ -9,6 +9,7 @@
 
 ## Features Báo
 - chưng nào m dô xem file này thì xoá dòng này cho t bik nha Báo
+- tao vô xem rồi, nhưng mà t chưa xóa tại t tên Huy
 
 ## Train model + chỉ số đánh giá a K
 
