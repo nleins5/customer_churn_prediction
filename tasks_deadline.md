@@ -8,8 +8,7 @@
 - Tối thứ 7 họp để hoàn thiện phần EDA
 
 ## Features Báo
-- chưng nào m dô xem file này thì xoá dòng này cho t bik nha Báo
-- tao vô xem rồi, nhưng mà t chưa xóa tại t tên Huy
+- Đọc rùi nha
 
 ## Train model + chỉ số đánh giá a K
 
