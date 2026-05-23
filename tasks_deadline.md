@@ -8,7 +8,7 @@
 - Tối thứ 7 họp để hoàn thiện phần EDA
 
 ## Features Báo
-- Đọc rùi nha
+Deadline: tối thứ 2
 
 ## Train model + chỉ số đánh giá a K
 
