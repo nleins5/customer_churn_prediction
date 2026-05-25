@@ -1,5 +1,9 @@
 from src.utils.common import read_yaml, create_directories
-from src.entity.config_entity import DataIngestionConfig, DataValidationConfig
+from src.entity.config_entity import (
+    DataIngestionConfig,
+    DataValidationConfig,
+    DataTransformationConfig,
+)
 from pathlib import Path
 import os
 
@@ -60,3 +64,17 @@ class ConfigurationManager:
         )
 
         return data_validation_config
+
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        """
+        Lấy thông tin cấu hình cho bước Data Transformation.
+        """
+        config = self.config.data_transformation
+        create_directories([config.root_dir])
+        return DataTransformationConfig(
+            root_dir=Path(config.root_dir),
+            train_data_path=Path(config.train_data_path),
+            test_data_path=Path(config.test_data_path),
+            preprocessor_path=Path(config.preprocessor_path),
+        )
+ 
