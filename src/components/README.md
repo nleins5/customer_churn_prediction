@@ -8,7 +8,8 @@ src/components/
 ├── data_validation.py          # Stage 2: Kiểm tra schema
 ├── data_transformation.py      # Stage 3: Feature engineering & preprocessing
 ├── model_trainer.py            # Stage 4: Training với GridSearchCV
-└── model_evaluation.py         # Stage 5: Evaluation và visualization
+├── model_evaluation.py         # Stage 5: Evaluation và visualization
+└── prediction.py               # Stage 6: Tạo predictions & submission
 ```
 
 ---
@@ -133,6 +134,25 @@ src/components/
 
 ---
 
+### 6. `prediction.py` (Stage 6)
+
+**Chức năng chính**: Dự đoán trên test set và tạo file submission nộp Kaggle
+
+**Làm gì**:
+- Load mô hình tốt nhất (`model.joblib`) từ Stage 4
+- Load preprocessor (`preprocessor.joblib`) từ Stage 3
+- Đọc file `test.csv` từ Stage 1
+- Áp dụng các bước tiền xử lý và feature engineering cho test set thông qua preprocessor pipeline
+- Dự đoán nhãn Churn (Yes/No) cho toàn bộ 254,655 mẫu của tập test
+- Tạo tệp tin `submission.csv` chuẩn định dạng nộp bài của Kaggle
+
+**Class**: `PredictionPipeline`  
+**Method chính**: `run()`
+
+**Output**: `submission.csv` (lưu tại thư mục gốc)
+
+---
+
 ## 🔗 Luồng dữ liệu
 
 ```
@@ -146,4 +166,6 @@ model_trainer.py
     ↓ model.joblib, metrics.json
 model_evaluation.py
     ↓ predictions.npz, visualizations
+prediction.py
+    ↓ submission.csv
 ```

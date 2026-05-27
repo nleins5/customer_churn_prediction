@@ -47,6 +47,9 @@ src/config/
   
 - `get_model_evaluation_config()` → `ModelEvaluationConfig`
   - Trả về: root_dir, test_data_path, model_path, all_params, metric_file_name, mlflow_uri
+  
+- `get_prediction_config()` → `PredictionConfig`
+  - Trả về: root_dir, model_path, preprocessor_path, test_data_path, output_path
 
 **Lợi ích**:
 - **Centralized**: Tất cả config ở một nơi, dễ quản lý

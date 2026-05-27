@@ -5,6 +5,7 @@ from src.entity.config_entity import (
     DataTransformationConfig,
     ModelTrainerConfig,
     ModelEvaluationConfig,
+    PredictionConfig,
 )
 from pathlib import Path
 import os
@@ -124,3 +125,21 @@ class ConfigurationManager:
         )
 
         return model_evaluation_config
+
+    def get_prediction_config(self) -> PredictionConfig:
+        """
+        Lấy thông tin cấu hình cho bước Prediction & Submission.
+        """
+        config = self.config.prediction
+
+        create_directories([config.root_dir])
+
+        prediction_config = PredictionConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+            preprocessor_path=Path(config.preprocessor_path),
+            test_data_path=Path(config.test_data_path),
+            output_path=Path(config.output_path),
+        )
+
+        return prediction_config

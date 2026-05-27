@@ -9,7 +9,8 @@ src/pipeline/
 ├── stage_02_data_validation.py         # Wrapper cho Stage 2
 ├── stage_03_data_transformation.py     # Wrapper cho Stage 3
 ├── stage_04_model_trainer.py           # Wrapper cho Stage 4
-└── stage_05_model_evaluation.py        # Wrapper cho Stage 5
+├── stage_05_model_evaluation.py        # Wrapper cho Stage 5
+└── stage_06_prediction.py              # Wrapper cho Stage 6
 ```
 
 ---
@@ -111,6 +112,24 @@ src/pipeline/
 
 ---
 
+### 7. `stage_06_prediction.py`
+
+**Class**: `PredictionTrainingPipeline`
+
+**Chức năng**: Orchestrate Stage 6 - Prediction & Submission
+
+**Làm gì**:
+- Khởi tạo ConfigurationManager
+- Lấy config cho prediction (PredictionConfig)
+- Khởi tạo PredictionPipeline component với config
+- Gọi method `run()` để chạy dự đoán trên test set và lưu tệp tin `submission.csv`
+- Xử lý lỗi và logging
+
+**Có thể chạy độc lập**: `python src/pipeline/stage_06_prediction.py`
+
+
+---
+
 ## 🎯 Mục đích của Pipeline Wrappers
 
 ### Tách biệt logic:
@@ -141,6 +160,8 @@ Stage 3: Data Transformation
 Stage 4: Model Training
     ↓
 Stage 5: Model Evaluation
+    ↓
+Stage 6: Prediction & Submission
 ```
 
 Mỗi stage được wrap trong try-except block với logging rõ ràng

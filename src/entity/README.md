@@ -83,6 +83,18 @@ src/entity/
 
 ---
 
+### 6. `PredictionConfig`
+**Cho Stage 6**: Prediction & Submission
+
+**Attributes**:
+- `root_dir`: Thư mục gốc cho stage này (artifacts/prediction)
+- `model_path`: Đường dẫn đến mô hình đã train (model.joblib)
+- `preprocessor_path`: Đường dẫn đến bộ tiền xử lý (preprocessor.joblib)
+- `test_data_path`: Đường dẫn đến dữ liệu test gốc (test.csv)
+- `output_path`: Đường dẫn tệp tin đầu ra (submission.csv)
+
+---
+
 ## 🔄 Cách sử dụng
 
 **Luồng hoạt động**:

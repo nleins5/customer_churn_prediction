@@ -4,6 +4,7 @@ from src.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 from src.pipeline.stage_03_data_transformation import DataTransformationTrainingPipeline
 from src.pipeline.stage_04_model_trainer import ModelTrainerTrainingPipeline
 from src.pipeline.stage_05_model_evaluation import ModelEvaluationTrainingPipeline
+from src.pipeline.stage_06_prediction import PredictionTrainingPipeline
 
 STAGE_NAME = "Giai đoạn Data Ingestion"
 try:
@@ -55,3 +56,12 @@ except Exception as e:
     logger.exception(e)
     raise e
 
+STAGE_NAME = "Giai đoạn Prediction & Submission"
+try:
+    logger.info(f">>>>>> Bắt đầu giai đoạn {STAGE_NAME} <<<<<<")
+    prediction = PredictionTrainingPipeline()
+    prediction.main()
+    logger.info(f">>>>>> Hoàn thành giai đoạn {STAGE_NAME} <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e

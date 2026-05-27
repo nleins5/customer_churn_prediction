@@ -43,4 +43,12 @@ class ModelEvaluationConfig:
     model_path: Path
     all_params: dict
     metric_file_name: Path
-    mlflow_uri: str
+    mlflow_uri: str
+
+@dataclass(frozen=True)
+class PredictionConfig:
+    root_dir: Path
+    model_path: Path
+    preprocessor_path: Path
+    test_data_path: Path
+    output_path: Path
