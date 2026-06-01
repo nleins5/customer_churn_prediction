@@ -8,3 +8,5 @@ kaggle.json
 .ipynb_checkpoints/
 mlruns/
 *.db
+
+test_eda.py
