@@ -3,11 +3,9 @@ from functools import lru_cache
 from math import isfinite
 from pathlib import Path
 from typing import Any, Dict, Tuple
-
 import joblib
 import numpy as np
 import pandas as pd
-
 from app.config import MODEL_PATH, PREPROCESSOR_PATH
 
 
