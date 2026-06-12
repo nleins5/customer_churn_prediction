@@ -14,13 +14,13 @@ pip install -r requirements.txt
 
 Khởi chạy máy chủ phát triển cục bộ từ thư mục gốc của dự án:
 ```bash
-uvicorn backend.main:app --reload
+uvicorn backend.app.main:app --reload
 ```
 *   **Địa chỉ Server:** `http://127.0.0.1:8000`
 *   **Kiểm tra hoạt động:** Truy cập `http://127.0.0.1:8000/` (Sẽ trả về chuỗi JSON thông báo server đang hoạt động).
 
 ### 🔍 Cách kiểm tra và xem thử API trực quan
-FastAPI tự động sinh tài liệu API tương tác bằng **Swagger UI** và **ReDoc**. Để chạy thử trực tiếp:
+FstAPI tự động sinh tài liệu API tương tác bằng **Swagger UI** và **ReDoc**. Để chạy thử trực tiếp:
 1. Mở trình duyệt và truy cập: **`http://127.0.0.1:8000/docs`**
 2. Tại đây, bạn sẽ thấy toàn bộ danh sách các API định tuyến dưới tag **Exploratory Data Analysis**.
 3. **Cách xem thử (Try it out):**
