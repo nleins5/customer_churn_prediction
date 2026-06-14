@@ -1,7 +1,7 @@
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import eda_route, predict_route
+from app.routes import eda_route, predict_route, train_route
 
 # Cấu hình logging
 logging.basicConfig(
@@ -28,6 +28,7 @@ app.add_middleware(
 # Đăng ký router theo quy ước chung: prefix được khai báo trong từng route file.
 app.include_router(eda_route.router)
 app.include_router(predict_route.router)
+app.include_router(train_route.router)
 
 @app.get("/")
 def health_check():
