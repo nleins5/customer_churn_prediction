@@ -490,39 +490,6 @@ model_evaluation:
   mlflow_uri: "http://your-mlflow-server:5000"
 ```
 
----
-
-## 📝 Ghi chú quan trọng
-
-### Feature Engineering
-
-Dự án này tạo ra 9 features mới dựa trên EDA insights:
-
-1. `charge_to_tenure_ratio`: Tỷ lệ chi phí/tháng sử dụng
-2. `is_high_risk_profile`: Hợp đồng tháng + thanh toán Electronic check
-3. `early_churn_flag`: Tenure ≤ 5 tháng
-4. `utility_services_count`: Số dịch vụ hỗ trợ đang dùng
-5. `streaming_count`: Số dịch vụ streaming đang dùng
-6. `has_family`: Có Partner hoặc Dependents
-7. `is_month_to_month`: Hợp đồng theo tháng
-8. `is_fiber_optic`: Dùng Fiber optic
-9. Các features khác từ preprocessing pipeline
-
-### SMOTE (Synthetic Minority Over-sampling)
-
-- **Trước SMOTE**: 460,377 (No) vs 133,817 (Yes) - Tỷ lệ 77.5% vs 22.5%
-- **Sau SMOTE**: 460,377 (No) vs 460,377 (Yes) - Tỷ lệ 50% vs 50%
-- **Tổng samples**: 920,754 rows
-
-### Test Set không có nhãn
-
-Tập test từ Kaggle không có cột `Churn`, do đó:
-
-- Stage 5 chỉ tạo predictions, không tính metrics
-- Không có Confusion Matrix và ROC Curve cho test set
-- Để đánh giá đầy đủ, sử dụng validation set (20% của train)
-
----
 
 ## 🤝 Đóng góp
 
