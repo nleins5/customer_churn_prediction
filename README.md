@@ -33,24 +33,6 @@ Bảng dưới đây mô tả chi tiết 23 đặc trưng trong tập dữ liệ
 
 Dự án dự đoán khách hàng rời bỏ dịch vụ (Customer Churn) sử dụng Machine Learning với kiến trúc MLOps Pipeline hoàn chỉnh.
 
-## 📊 Kết quả đạt được
-
-- **Mô hình tốt nhất**: LightGBM
-- **ROC AUC Score**: 93.39%
-- **Dataset**: Kaggle Playground Series S6E3 (~594k training samples)
-- **Features**: 23 features sau feature engineering và preprocessing
-
-### 📈 Biểu đồ đánh giá (Validation Set)
-
-Để trực quan hóa hiệu suất phân loại của mô hình tốt nhất (LightGBM), các biểu đồ đánh giá đã được vẽ và lưu trữ trong thư mục `docs/`:
-
-#### 1. Confusion Matrix (Ma trận nhầm lẫn)
-
-![Confusion Matrix](docs/validation_confusion_matrix.png)
-
-#### 2. ROC Curve (Đường cong ROC)
-
-![ROC Curve](docs/validation_roc_curve.png)
 
 ## 🎯 Tổng quan dự án
 
@@ -417,6 +399,25 @@ python predict.py
 | ------------ | ---------- | -------- | --------------- |
 | **LightGBM** | **93.39%** | -        | ✅ **Tốt nhất** |
 | XGBoost      | 93.01%     | 86.63%   | -               |
+
+## 📊 Kết quả đạt được
+
+- **Mô hình tốt nhất**: LightGBM
+- **ROC AUC Score**: 93.39%
+- **Dataset**: Kaggle Playground Series S6E3 (~594k training samples)
+- **Features**: 23 features sau feature engineering và preprocessing
+
+### 📈 Biểu đồ đánh giá (Validation Set)
+
+Để trực quan hóa hiệu suất phân loại của mô hình tốt nhất (LightGBM), các biểu đồ đánh giá đã được vẽ và lưu trữ trong thư mục `docs/`:
+
+#### 1. Confusion Matrix (Ma trận nhầm lẫn)
+
+![Confusion Matrix](docs/validation_confusion_matrix.png)
+
+#### 2. ROC Curve (Đường cong ROC)
+
+![ROC Curve](docs/validation_roc_curve.png)
 
 ### Artifacts được tạo ra
 
