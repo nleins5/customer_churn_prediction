@@ -24,3 +24,12 @@ ipykernel
 kagglehub>=1.0.0
 python-box
 ensure
+pyyaml>=6.0
+mlflow>=2.0.0
+
+#backend
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+pydantic>=2.0.0
+httpx>=0.24.0
+pytest>=7.0.0
