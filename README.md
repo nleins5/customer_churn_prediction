@@ -455,8 +455,4 @@ model_trainer:
 model_evaluation:
   mlflow_uri: "http://your-mlflow-server:5000"
 ```
----
 
-**Last Updated**: 2026-05-27  
-**Version**: 1.0.0  
-**Status**: ✅ Production Ready
