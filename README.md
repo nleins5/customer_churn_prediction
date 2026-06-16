@@ -455,33 +455,6 @@ model_trainer:
 model_evaluation:
   mlflow_uri: "http://your-mlflow-server:5000"
 ```
-
-
-## 🤝 Đóng góp
-
-Dự án này được phát triển bởi nhóm:
-
-- **EDA**: Giabi, Thầy Huy, Fuck, LA
-- **Features Engineering**: Báo
-- **Model Training**: K
-- **Evaluation & Decoration**: Đức
-
----
-
-## 📚 Tài liệu tham khảo
-
-- [Kaggle Competition: Playground Series S6E3](https://www.kaggle.com/competitions/playground-series-s6e3)
-- [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
-- [LightGBM Documentation](https://lightgbm.readthedocs.io/)
-- [XGBoost Documentation](https://xgboost.readthedocs.io/)
-- [Scikit-learn Pipeline](https://scikit-learn.org/stable/modules/compose.html)
-
----
-
-## 📞 Liên hệ
-
-Nếu có câu hỏi hoặc vấn đề, vui lòng tạo issue trên GitHub repository.
-
 ---
 
 **Last Updated**: 2026-05-27  
