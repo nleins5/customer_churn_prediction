@@ -1,4 +1,5 @@
 venv
+.venv
 data/
 artifacts/
 logs/
@@ -8,3 +9,17 @@ kaggle.json
 .ipynb_checkpoints/
 mlruns/
 *.db
+node_modules/
+build/
+dist/
+*.mp4
+*.m3u8
+*.webp
+*.png
+*.jpg
+*.jpeg
+!frontend/public/videos/**
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

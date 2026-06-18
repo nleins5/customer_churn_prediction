@@ -97,6 +97,25 @@ class FakeEDAService:
             "insight": "Correlation insight",
         }
 
+    def get_tenure_binned(self):
+        return {
+            "categories": ["0-12", "13-24"],
+            "churn_percentages": [30.0, 20.0],
+            "retain_percentages": [70.0, 80.0]
+        }
+
+    def get_risk_features(self):
+        return {
+            "risk_features": [
+                {
+                    "feature": "Contract",
+                    "impact": "Cao",
+                    "direction": "Month-to-month",
+                    "risk": 42
+                }
+            ]
+        }
+
 
 def test_eda_overview_returns_shape_and_insight(monkeypatch):
     monkeypatch.setattr(eda_route, "eda_service", FakeEDAService())
@@ -167,3 +186,25 @@ def test_eda_bivariate_rejects_invalid_column(monkeypatch):
     response = client.get("/api/v1/eda/bivariate/INVALID_COL")
 
     assert response.status_code == 400
+
+
+def test_eda_tenure_binned_returns_percentages(monkeypatch):
+    monkeypatch.setattr(eda_route, "eda_service", FakeEDAService())
+
+    response = client.get("/api/v1/eda/tenure-binned")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert "churn_percentages" in body
+    assert "retain_percentages" in body
+
+
+def test_eda_risk_features_returns_risk_list(monkeypatch):
+    monkeypatch.setattr(eda_route, "eda_service", FakeEDAService())
+
+    response = client.get("/api/v1/eda/risk-features")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert "risk_features" in body
+    assert len(body["risk_features"]) > 0

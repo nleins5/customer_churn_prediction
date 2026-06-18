@@ -3,49 +3,53 @@ import { pieChartData, pieChartOptions } from "variables/charts";
 import Card from "components/card";
 
 const PieChartCard = () => {
+  const segments = [
+    { label: "Churned",  pct: "23%", color: "#CC5833" },
+    { label: "Retained", pct: "63%", color: "#2E4036" },
+    { label: "At-Risk",  pct: "14%", color: "#e8956e" },
+  ];
+
   return (
-    <Card extra="rounded-[20px] p-3">
-      <div className="flex flex-row justify-between px-3 pt-2">
+    <Card extra="rounded-2xl p-5 hover:border-[#CC5833]/20 transition-all duration-300">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
         <div>
-          <h4 className="text-lg font-bold text-navy-700 dark:text-white">
-            Your Pie Chart
+          <p className="text-[10px] uppercase tracking-widest font-mono mb-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
+            Breakdown
+          </p>
+          <h4 className="text-base font-bold" style={{ color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            Churn Distribution
           </h4>
         </div>
-
-        <div className="mb-6 flex items-center justify-center">
-          <select className="mb-3 mr-2 flex items-center justify-center text-sm font-bold text-gray-600 hover:cursor-pointer dark:!bg-navy-800 dark:text-white">
-            <option value="monthly">Monthly</option>
-            <option value="yearly">Yearly</option>
-            <option value="weekly">Weekly</option>
-          </select>
-        </div>
+        <select
+          className="text-xs font-mono rounded-lg px-2 py-1 outline-none"
+          style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)" }}
+        >
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+          <option value="weekly">Weekly</option>
+        </select>
       </div>
 
-      <div className="mb-auto flex h-[220px] w-full items-center justify-center">
+      {/* Donut chart */}
+      <div className="flex h-[180px] w-full items-center justify-center">
         <PieChart options={pieChartOptions} series={pieChartData} />
       </div>
-      <div className="flex flex-row !justify-between rounded-2xl px-6 py-3 shadow-2xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex items-center justify-center">
-            <div className="h-2 w-2 rounded-full bg-brand-500" />
-            <p className="ml-1 text-sm font-normal text-gray-600">Your Files</p>
-          </div>
-          <p className="mt-px text-xl font-bold text-navy-700  dark:text-white">
-            63%
-          </p>
-        </div>
 
-        <div className="h-11 w-px bg-gray-300 dark:bg-white/10" />
-
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex items-center justify-center">
-            <div className="h-2 w-2 rounded-full bg-[#6AD2FF]" />
-            <p className="ml-1 text-sm font-normal text-gray-600">System</p>
+      {/* Legend stats */}
+      <div
+        className="mt-3 flex flex-row justify-between rounded-xl px-4 py-3"
+        style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}
+      >
+        {segments.map((s, i) => (
+          <div key={s.label} className={`flex flex-col items-center ${i > 0 ? "border-l border-white/5 pl-4" : ""}`}>
+            <div className="flex items-center gap-1 mb-1">
+              <span className="h-2 w-2 rounded-full" style={{ background: s.color }} />
+              <p className="text-[10px] font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{s.label}</p>
+            </div>
+            <p className="text-lg font-bold" style={{ color: "#fff", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{s.pct}</p>
           </div>
-          <p className="mt-px text-xl font-bold text-navy-700 dark:text-white">
-            25%
-          </p>
-        </div>
+        ))}
       </div>
     </Card>
   );

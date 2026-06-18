@@ -2,18 +2,37 @@ import Card from "components/card";
 
 const Widget = ({ icon, title, subtitle }) => {
   return (
-    <Card extra="!flex-row flex-grow items-center rounded-[20px]">
-      <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
-        <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
-          <span className="flex items-center text-brand-500 dark:text-white">
+    <Card extra="flex flex-col items-center justify-center rounded-2xl group hover:border-[#CC5833]/20 transition-all duration-300 cursor-default p-4 h-full w-full min-w-0">
+      <div className="flex h-11 w-11 items-center justify-center mb-2.5">
+        <div
+          className="rounded-xl p-2.5 transition-all duration-300 group-hover:scale-110"
+          style={{
+            background: "rgba(204,88,51,0.08)",
+            border: "1px solid rgba(204,88,51,0.15)",
+            boxShadow: "0 0 20px rgba(204,88,51,0.08)",
+          }}
+        >
+          <span
+            className="flex items-center justify-center"
+            style={{ color: "#CC5833" }}
+          >
             {icon}
           </span>
         </div>
       </div>
 
-      <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-        <p className="font-dm text-sm font-medium text-gray-600">{title}</p>
-        <h4 className="text-xl font-bold text-navy-700 dark:text-white">
+      <div className="flex flex-col justify-center items-center text-center min-w-0 w-full">
+        <p
+          className="text-[10px] uppercase tracking-widest mb-1 text-ellipsis overflow-hidden whitespace-nowrap w-full"
+          style={{ color: "rgba(255,255,255,0.85)", fontFamily: "'IBM Plex Mono', monospace" }}
+          title={title}
+        >
+          {title}
+        </p>
+        <h4
+          className="text-xl font-bold text-white text-ellipsis overflow-hidden whitespace-nowrap w-full"
+          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+        >
           {subtitle}
         </h4>
       </div>

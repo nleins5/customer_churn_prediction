@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Video</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    video {
+      max-width: 90%;
+      max-height: 70vh;
+      border: 2px solid #333;
+      border-radius: 10px;
+    }
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Playing test2.mp4</h1>
+  <video id="vid" src="/videos/test2.mp4" controls autoplay loop muted></video>
+  <div class="controls">
+    <button onclick="play('test2.mp4')">test2.mp4</button>
+    <button onclick="play('ex.mp4')">ex.mp4</button>
+    <button onclick="play('wow.mp4')">wow.mp4</button>
+    <button onclick="play('philosophy.mp4')">philosophy.mp4</button>
+    <button onclick="play('centerpiece.mp4')">centerpiece.mp4</button>
+  </div>
+  <script>
+    function play(file) {
+      document.getElementById('title').innerText = 'Playing ' + file;
+      document.getElementById('vid').src = '/videos/' + file;
+      document.getElementById('vid').play();
+    }
+  </script>
+</body>
+</html>

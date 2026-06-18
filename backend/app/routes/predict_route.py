@@ -29,3 +29,13 @@ def predict_customer_churn(customer: CustomerInput):
     except Exception as exc:
         logger.exception("Dự đoán thất bại")
         raise HTTPException(status_code=500, detail="Dự đoán thất bại do lỗi xử lý phía server.")
+
+
+@router.get("/recent-logs")
+def get_recent_predictions(limit: int = 5):
+    try:
+        return predict_service.get_recent_predictions(limit)
+    except Exception as exc:
+        logger.error("Loi endpoint /recent-logs: %s", exc)
+        raise HTTPException(status_code=500, detail="Không thể lấy danh sách dự đoán gần đây.")
+

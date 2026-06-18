@@ -108,6 +108,7 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         dm: ["DM Sans", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
       },
       boxShadow: {
         "3xl": "14px 17px 40px 4px",
@@ -135,6 +136,8 @@ module.exports = {
       "4xl-max": { max: "1850px" },
     },
     colors: () => ({
+      transparent: "transparent",
+      black: "#000000",
       white: "#ffffff",
       lightPrimary: "#F4F7FE",
       blueSecondary: "#4318FF",

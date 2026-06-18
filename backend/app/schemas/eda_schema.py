@@ -110,3 +110,23 @@ class CorrelationMatrixResponse(BaseModel):
     index: List[str] = Field(..., description="Danh sách tên hàng tương ứng")
     values: List[List[float]] = Field(..., description="Mảng 2 chiều chứa ma trận hệ số tương quan")
     insight: str = Field(..., description="Đánh giá tương quan tuyến tính của các biến")
+
+
+# --- 8. Schema cho get_tenure_binned ---
+class BinnedTenureResponse(BaseModel):
+    categories: List[str] = Field(..., description="Tên các nhóm tenure")
+    churn_percentages: List[float] = Field(..., description="Tỷ lệ churn (%) tương ứng với từng nhóm")
+    retain_percentages: List[float] = Field(..., description="Tỷ lệ retain (%) tương ứng với từng nhóm")
+
+
+# --- 9. Schema cho get_risk_features ---
+class RiskFeatureRow(BaseModel):
+    feature: str = Field(..., description="Tên thuộc tính rủi ro")
+    impact: str = Field(..., description="Mức độ ảnh hưởng (Cao, Trung bình, Thấp)")
+    direction: str = Field(..., description="Hướng tác động của đặc trưng")
+    risk: int = Field(..., description="Điểm rủi ro / Churn rate của nhóm (%)")
+
+
+class RiskFeaturesResponse(BaseModel):
+    risk_features: List[RiskFeatureRow] = Field(..., description="Danh sách các thuộc tính rủi ro hàng đầu")
+

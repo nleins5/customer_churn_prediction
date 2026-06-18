@@ -6,17 +6,29 @@ import { RiMoonFill, RiSunFill } from "react-icons/ri";
 export default function FixedPlugin(props) {
   const { ...rest } = props;
   const [darkmode, setDarkmode] = React.useState(
-    document.body.classList.contains("dark")
+    document.documentElement.classList.contains("dark")
   );
+
+  React.useEffect(() => {
+    if (darkmode) {
+      document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
+    }
+  }, [darkmode]);
 
   return (
     <button
       className="border-px fixed bottom-[30px] right-[35px] !z-[99] flex h-[60px] w-[60px] items-center justify-center rounded-full border-[#6a53ff] bg-gradient-to-br from-brandLinear to-blueSecondary p-0"
       onClick={() => {
         if (darkmode) {
+          document.documentElement.classList.remove("dark");
           document.body.classList.remove("dark");
           setDarkmode(false);
         } else {
+          document.documentElement.classList.add("dark");
           document.body.classList.add("dark");
           setDarkmode(true);
         }

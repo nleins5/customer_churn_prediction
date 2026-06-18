@@ -2,21 +2,18 @@ import React from "react";
 
 // Admin Imports
 import MainDashboard from "views/admin/default";
-import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/profile";
-import DataTables from "views/admin/tables";
-import RTLDefault from "views/rtl/default";
 
-// Auth Imports
-import SignIn from "views/auth/SignIn";
+// Custom Admin Sub-Dashboards
+import EDADashboard from "views/admin/eda";
+import ChurnPrediction from "views/admin/predict";
+import ModelComparison from "views/admin/comparison";
 
 // Icon Imports
 import {
   MdHome,
-  MdOutlineShoppingCart,
-  MdBarChart,
-  MdPerson,
-  MdLock,
+  MdAnalytics,
+  MdOnlinePrediction,
+  MdLeaderboard,
 } from "react-icons/md";
 
 const routes = [
@@ -28,40 +25,26 @@ const routes = [
     component: <MainDashboard />,
   },
   {
-    name: "NFT Marketplace",
+    name: "EDA Dashboard",
     layout: "/admin",
-    path: "nft-marketplace",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
-    secondary: true,
+    path: "eda",
+    icon: <MdAnalytics className="h-6 w-6" />,
+    component: <EDADashboard />,
   },
   {
-    name: "Data Tables",
+    name: "Churn Prediction",
     layout: "/admin",
-    icon: <MdBarChart className="h-6 w-6" />,
-    path: "data-tables",
-    component: <DataTables />,
+    path: "predict",
+    icon: <MdOnlinePrediction className="h-6 w-6" />,
+    component: <ChurnPrediction />,
   },
   {
-    name: "Profile",
+    name: "Model Comparison",
     layout: "/admin",
-    path: "profile",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
-  },
-  {
-    name: "Sign In",
-    layout: "/auth",
-    path: "sign-in",
-    icon: <MdLock className="h-6 w-6" />,
-    component: <SignIn />,
-  },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
+    path: "comparison",
+    icon: <MdLeaderboard className="h-6 w-6" />,
+    component: <ModelComparison />,
   },
 ];
+
 export default routes;

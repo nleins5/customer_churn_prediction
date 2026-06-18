@@ -30,13 +30,13 @@ TARGET_COL = "Churn"
 def load_and_sample_data(sample_size: int, test_size: float):
     logger.info(f"Loading data from {TRAIN_DATA_PATH}")
     df = pd.read_csv(TRAIN_DATA_PATH)
+    logger.info(f"Loaded DataFrame columns: {df.columns.tolist()}")
     
     # Stratified sampling
     if sample_size < len(df):
         logger.info(f"Sampling {sample_size} rows from {len(df)} rows")
-        df_sample = df.groupby(TARGET_COL, group_keys=False).apply(
-            lambda x: x.sample(n=int(len(x)/len(df) * sample_size), random_state=42)
-        ).reset_index(drop=True)
+        df_sample, _ = train_test_split(df, train_size=sample_size, stratify=df[TARGET_COL], random_state=42)
+        df_sample = df_sample.reset_index(drop=True)
     else:
         df_sample = df.copy()
 

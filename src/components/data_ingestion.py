@@ -31,6 +31,14 @@ class DataIngestion:
         
         # Kiểm tra xem file nguồn có tồn tại hay không
         if not os.path.exists(local_file):
+            raw_train = Path("data/train.csv")
+            raw_test = Path("data/test.csv")
+            if raw_train.exists() and raw_test.exists():
+                import shutil
+                shutil.copy(raw_train, Path(unzip_path) / "train.csv")
+                shutil.copy(raw_test, Path(unzip_path) / "test.csv")
+                logger.info(f"Đã sao chép trực tiếp các file CSV vào {unzip_path}")
+                return
             logger.error(f"Không tìm thấy file: {local_file}")
             raise FileNotFoundError(f"Không tìm thấy file: {local_file}")
 

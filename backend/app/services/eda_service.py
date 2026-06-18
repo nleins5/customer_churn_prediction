@@ -397,3 +397,103 @@ class EDAService:
             "values": corr_matrix.values.tolist(),
             "insight": insight
         }
+
+    def get_tenure_binned(self) -> Dict[str, Any]:
+        """
+        Phân chia tenure thành các khoảng [0-12, 13-24, 25-36, 37-48, 49-60, 61-72]
+        và tính toán tỉ lệ Churn / Retain tương ứng của từng khoảng để đưa vào Area Chart.
+        """
+        logger.info("Tính toán phân phối binned tenure theo Churn...")
+        df = self.df.copy()
+        
+        bins = [0, 12, 24, 36, 48, 60, 72]
+        labels = ["0-12", "13-24", "25-36", "37-48", "49-60", "61-72"]
+        df['tenure_group'] = pd.cut(df['tenure'], bins=bins, labels=labels, include_lowest=True)
+        
+        grouped = df.groupby(['tenure_group', 'Churn'], observed=False).size().unstack(fill_value=0)
+        
+        churn_percentages = []
+        retain_percentages = []
+        
+        for label in labels:
+            if label in grouped.index:
+                row = grouped.loc[label]
+                total = row.sum()
+                if total > 0:
+                    churn_pct = round((row.get('Yes', 0) / total) * 100, 1)
+                    retain_pct = round((row.get('No', 0) / total) * 100, 1)
+                else:
+                    churn_pct = 0.0
+                    retain_pct = 0.0
+            else:
+                churn_pct = 0.0
+                retain_pct = 0.0
+            churn_percentages.append(churn_pct)
+            retain_percentages.append(retain_pct)
+            
+        return {
+            "categories": labels,
+            "churn_percentages": churn_percentages,
+            "retain_percentages": retain_percentages
+        }
+
+    def get_risk_features(self) -> Dict[str, Any]:
+        """
+        Tính toán tỷ lệ rời mạng thực tế (risk percentage) của các nhóm đặc trưng rủi ro chính:
+        1. Contract (Month-to-month)
+        2. Tenure (Tenure <= 12 tháng)
+        3. InternetService (Fiber optic)
+        4. MonthlyCharges (MonthlyCharges > 70)
+        5. TechSupport (No)
+        """
+        logger.info("Tính toán các thuộc tính rủi ro hàng đầu...")
+        df = self.df.copy()
+        
+        def get_churn_rate(mask) -> int:
+            sub = df[mask]
+            if len(sub) == 0:
+                return 0
+            churn_count = len(sub[sub['Churn'] == 'Yes'])
+            return int(round((churn_count / len(sub)) * 100))
+        
+        c_risk = get_churn_rate(df['Contract'] == 'Month-to-month')
+        t_risk = get_churn_rate(df['tenure'] <= 12)
+        i_risk = get_churn_rate(df['InternetService'] == 'Fiber optic')
+        m_risk = get_churn_rate(df['MonthlyCharges'] > 70)
+        s_risk = get_churn_rate(df['TechSupport'] == 'No')
+        
+        return {
+            "risk_features": [
+                {
+                    "feature": "Loại hợp đồng (Contract)",
+                    "impact": "Cao",
+                    "direction": "Month-to-month → rời mạng nhiều nhất",
+                    "risk": c_risk
+                },
+                {
+                    "feature": "Thời gian sử dụng (Tenure)",
+                    "impact": "Cao",
+                    "direction": "Tenure thấp (<= 12 tháng) → rủi ro cao",
+                    "risk": t_risk
+                },
+                {
+                    "feature": "Dịch vụ Internet (Internet Service)",
+                    "impact": "Trung bình",
+                    "direction": "Fiber Optic → churn cao hơn",
+                    "risk": i_risk
+                },
+                {
+                    "feature": "Cước phí hàng tháng (Monthly Charges)",
+                    "impact": "Trung bình",
+                    "direction": "Cước cao (> $70) → tỷ lệ churn tăng",
+                    "risk": m_risk
+                },
+                {
+                    "feature": "Hỗ trợ kỹ thuật (Tech Support)",
+                    "impact": "Thấp",
+                    "direction": "Không có hỗ trợ kỹ thuật (No)",
+                    "risk": s_risk
+                }
+            ]
+        }
+

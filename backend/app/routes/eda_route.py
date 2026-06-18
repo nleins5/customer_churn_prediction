@@ -11,6 +11,8 @@ from app.schemas.eda_schema import (
     NumericalDistributionResponse,
     NumericalStatsResponse,
     SanityCheckResponse,
+    BinnedTenureResponse,
+    RiskFeaturesResponse,
 )
 from app.services.eda_service import EDAService
 
@@ -111,3 +113,24 @@ def get_correlation():
     except Exception as exc:
         logger.error("Loi endpoint /correlation: %s", exc)
         raise HTTPException(status_code=500, detail=str(exc))
+
+
+@router.get("/tenure-binned", response_model=BinnedTenureResponse)
+def get_tenure_binned():
+    verify_service()
+    try:
+        return eda_service.get_tenure_binned()
+    except Exception as exc:
+        logger.error("Loi endpoint /tenure-binned: %s", exc)
+        raise HTTPException(status_code=500, detail=str(exc))
+
+
+@router.get("/risk-features", response_model=RiskFeaturesResponse)
+def get_risk_features():
+    verify_service()
+    try:
+        return eda_service.get_risk_features()
+    except Exception as exc:
+        logger.error("Loi endpoint /risk-features: %s", exc)
+        raise HTTPException(status_code=500, detail=str(exc))
+

@@ -86,3 +86,20 @@ def test_predict_returns_503_when_artifacts_missing(monkeypatch):
     response = client.post("/api/predict", json=VALID_CUSTOMER)
 
     assert response.status_code == 503
+
+
+def test_recent_logs_returns_list(monkeypatch):
+    def fake_get_recent_predictions(limit):
+        return [
+            { "id": "CUS-7091", "contract": "Month-to-month", "tenure": 4,  "charges": "$89.45", "risk": "High",   "prob": "78%"  }
+        ]
+
+    monkeypatch.setattr(predict_route.predict_service, "get_recent_predictions", fake_get_recent_predictions)
+
+    response = client.get("/api/recent-logs?limit=1")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert isinstance(body, list)
+    assert len(body) == 1
+    assert body[0]["id"] == "CUS-7091"
