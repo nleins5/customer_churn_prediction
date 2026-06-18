@@ -767,20 +767,18 @@ export default function LandingPage() {
         {/* Section 0: Home Hero */}
         <section 
           ref={heroRef} 
-          className="scroll-snap-section flex flex-col justify-end p-8 md:p-24 bg-black bg-cover bg-center overflow-hidden"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1920&q=80')" }}
+          className="scroll-snap-section flex flex-col justify-end p-8 md:p-24 bg-black overflow-hidden"
         >
           <div className="absolute inset-0 z-0 hero-bg-parallax scale-110 origin-center">
             <HlsVideo 
-              src="/videos/hero_pinterest.mp4" 
-              className="h-full w-full object-cover opacity-65" 
+              src="/videos/hero_hd.mp4" 
+              className="h-full w-full object-cover opacity-80" 
               autoPlay 
               muted 
               loop 
               playsInline 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-            <div className="absolute inset-0 bg-[#2E4036]/25 mix-blend-overlay"></div>
           </div>
 
           <CyberGrid />
